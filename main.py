@@ -1,10 +1,11 @@
 import json
+import sys
 
 #don't ask how, but i ALWAYS end up with at least one of these
 curr_curveset = int(0)
 
-with open('face_0026_01.json', 'r') as f:
-    with open('o.csv', 'w') as out:
+with open(sys.argv[1], 'r') as f:
+    with open(f'{sys.argv[1][:-4]}csv', 'w') as out:
         data = json.load(f)
         while True:
             if curr_curveset == int(len(data["AnimationClip"]["m_FloatCurves"])):
@@ -31,6 +32,7 @@ with open('face_0026_01.json', 'r') as f:
                 
                 out.write(f'{blend_node_name},{frames},{float(_value / 100)}\n')
                 
+#surprisingly, this is the least janky code i've ever written i think
                 
             
             
